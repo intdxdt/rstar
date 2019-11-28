@@ -47,6 +47,12 @@ pub trait Envelope: Clone + Copy + PartialEq + ::std::fmt::Debug {
     /// Returns the envelope's center point.
     fn center(&self) -> Self::Point;
 
+    /// Returns the envelope's lower left point.
+    fn lower_left(&self) -> Self::Point;
+
+    /// Returns the envelope's upper right point.
+    fn upper_right(&self) -> Self::Point;
+
     /// Returns a value proportional to the envelope's perimeter.
     fn perimeter_value(&self) -> <Self::Point as Point>::Scalar;
 

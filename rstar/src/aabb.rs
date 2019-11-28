@@ -133,6 +133,14 @@ where
             && self.upper.all_component_wise(&other.lower, |l, r| l >= r)
     }
 
+    fn intersection_area(&self, other: &Self) -> <Self::Point as Point>::Scalar {
+        AABB {
+            lower: self.lower.max_point(&other.lower),
+            upper: self.upper.min_point(&other.upper),
+        }
+        .area()
+    }
+
     fn area(&self) -> P::Scalar {
         let zero = P::Scalar::zero();
         let one = P::Scalar::one();
@@ -176,12 +184,12 @@ where
         self.lower.component_wise(&self.upper, |x, y| (x + y) / two)
     }
 
-    fn intersection_area(&self, other: &Self) -> <Self::Point as Point>::Scalar {
-        AABB {
-            lower: self.lower.max_point(&other.lower),
-            upper: self.upper.min_point(&other.upper),
-        }
-        .area()
+    fn lower_left(&self) -> Self::Point {
+        self.lower
+    }
+
+    fn upper_right(&self) -> Self::Point {
+        self.upper
     }
 
     fn perimeter_value(&self) -> P::Scalar {

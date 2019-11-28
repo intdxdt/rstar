@@ -15,7 +15,7 @@ use std::fmt::Debug;
 /// # Example
 /// ```
 /// # extern crate num_traits;
-/// use num_traits::{Bounded, Num, Signed};
+/// use num_traits::{Bounded, Num, NumCast, ToPrimitive, Signed};
 ///
 /// #[derive(Clone, Copy, PartialEq, PartialOrd, Debug)]
 /// struct MyFancyNumberType(f32);
@@ -25,6 +25,15 @@ use std::fmt::Debug;
 /// # fn min_value() -> Self { MyFancyNumberType(Bounded::min_value()) }
 /// #
 /// # fn max_value() -> Self { MyFancyNumberType(Bounded::max_value()) }
+/// }
+///
+/// impl ToPrimitive for MyFancyNumberType {
+///     fn to_i64(&self) -> Option<i64> { self.0.to_i64() }
+///     fn to_u64(&self) -> Option<u64> { self.0.to_u64() }
+/// }
+///
+/// impl NumCast for MyFancyNumberType {
+///     fn from<T: ToPrimitive>(n: T) -> Option<Self> { NumCast::from(n) }
 /// }
 ///
 /// impl Signed for MyFancyNumberType {
