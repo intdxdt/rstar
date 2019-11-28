@@ -1,4 +1,4 @@
-use num_traits::{Bounded, Num, Signed, Zero};
+use num_traits::{Bounded, Num, NumCast, Signed, Zero};
 use std::fmt::Debug;
 
 /// Defines a number type that is compatible with rstar.
@@ -96,9 +96,9 @@ use std::fmt::Debug;
 /// #
 /// ```
 ///
-pub trait RTreeNum: Bounded + Num + Clone + Copy + Signed + PartialOrd + Debug {}
+pub trait RTreeNum: Bounded + Num + NumCast + Clone + Copy + Signed + PartialOrd + Debug {}
 
-impl<S> RTreeNum for S where S: Bounded + Num + Clone + Copy + Signed + PartialOrd + Debug {}
+impl<S> RTreeNum for S where S: Bounded + Num + NumCast + Clone + Copy + Signed + PartialOrd + Debug {}
 
 /// Defines a point type that is compatible with rstar.
 ///
