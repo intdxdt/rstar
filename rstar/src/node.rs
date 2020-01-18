@@ -38,8 +38,10 @@ pub struct ParentNode<T>
 where
     T: RTreeObject,
 {
-    pub(crate) children: Vec<RTreeNode<T>>,
-    pub(crate) envelope: T::Envelope,
+    ///Children of parent node
+    pub children: Vec<RTreeNode<T>>,
+    ///Envelope of parent node
+    pub envelope: T::Envelope,
 }
 
 impl<T> RTreeObject for RTreeNode<T>
