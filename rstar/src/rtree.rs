@@ -143,7 +143,8 @@ where
     Params: RTreeParams,
     T: RTreeObject,
 {
-    root: ParentNode<T>,
+    ///RTree root
+    pub root: ParentNode<T>,
     size: usize,
     _params: ::std::marker::PhantomData<Params>,
 }
